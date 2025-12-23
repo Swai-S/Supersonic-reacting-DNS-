@@ -1,0 +1,18 @@
+# OpenFOAM runtime outputs
+[0-9]*/
+processor*/
+log.*
+postProcessing/
+
+# Mesh (generated)
+constant/polyMesh/
+
+# ParaView
+*.foam
+
+# OS/editor
+.DS_Store
+*.swp
+*~
+__pycache__/
+*.pyc

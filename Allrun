@@ -1,0 +1,23 @@
+#!/bin/bash
+# Allrun - Swahiba_Supersonic parallel runner
+
+caseDir="$(cd "$(dirname "$0")" && pwd)"
+cd "$caseDir" || exit 1
+
+echo "=== Running Swahiba_Supersonic PARALLEL ==="
+
+# Mesh
+echo "1) blockMesh..."
+blockMesh > log.blockMesh 2>&1
+
+# Decompose for parallel
+echo "2) decomposePar (8 cores)..."
+decomposePar > log.decomposePar 2>&1
+
+# Run parallel simulation
+echo "3) foamRun parallel (8 cores)..."
+mpirun --oversubscribe -np 8 foamRun -parallel > log.J3_fast 2>&1 &
+
+echo "Done! Monitor: tail -f log.J3_fast"
+echo "Stop later: kill %1"
+echo "Reconstruct: reconstructPar"

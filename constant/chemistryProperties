@@ -1,0 +1,49 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      chemistryProperties;
+}
+
+chemistryType
+{
+    solver      EulerImplicit;
+}
+
+chemistry       on;
+
+species
+(
+    H2
+    O2
+    H2O
+    N2
+);
+
+reactions
+{
+    globalH2reaction
+    {
+        type            irreversibleArrhenius;
+        reaction        "2H2 + O2 = 2H2O";
+        A               1e14;
+        beta            0.0;
+        Ta              8000;
+    }
+}
+
+initialChemicalTimeStep 1e-09;
+
+EulerImplicitCoeffs
+{
+    cTauChem    10;
+}
+
+odeCoeffs
+{
+    solver      seulex;
+    absTol      1e-7;
+    relTol      0.02;
+}

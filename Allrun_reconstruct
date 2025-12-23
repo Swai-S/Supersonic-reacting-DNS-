@@ -1,0 +1,9 @@
+#!/bin/bash
+# Allrun_reconstruct - reconstruct parallel results
+
+caseDir="$(cd "$(dirname "$0")" && pwd)"
+cd "$caseDir" || exit 1
+
+echo "=== Reconstructing parallel results ==="
+reconstructPar > log.reconstructPar 2>&1
+echo "Done! Visualize: paraFoam"

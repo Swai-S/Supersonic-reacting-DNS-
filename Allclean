@@ -1,0 +1,32 @@
+#!/bin/bash
+# Allclean - clean Swahiba_Supersonic case (PARALLEL SAFE)
+
+caseDir="$(cd "$(dirname "$0")" && pwd)"
+cd "$caseDir" || exit 1
+
+echo "Cleaning case in: $caseDir"
+
+# Remove processor directories (parallel)
+if [ -d "processor0" ]; then
+    echo "  Removing processor directories..."
+    rm -rf processor*
+fi
+
+# Remove all time directories except 0
+for d in [0-9]*; do
+    if [ "$d" != "0" ] && [ -d "$d" ]; then
+        echo "  Removing time directory: $d"
+        rm -rf "$d"
+    fi
+done
+
+# Remove logs
+rm -f log log.* log.J3* 2>/dev/null
+
+# Remove ParaView case files
+rm -f *.foam *.OpenFOAM 2>/dev/null
+
+# Remove dynamic code
+rm -rf dynamicCode 2>/dev/null
+
+echo "Allclean done."
