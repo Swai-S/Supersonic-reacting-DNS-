@@ -6,9 +6,21 @@ cd "$caseDir" || exit 1
 
 echo "=== Running Swahiba_Supersonic PARALLEL ==="
 
-# Mesh
-echo "1) blockMesh..."
-blockMesh > log.blockMesh 2>&1
+# Mesh policy:
+# You must provide a mesh before running as no mesh is provided.
+if [ ! -d "constant/polyMesh" ]; then
+  echo "ERROR: No mesh found at constant/polyMesh."
+  echo "Provide a mesh"
+  echo "then re-run: ./Allrun"
+  exit 1
+fi
+
+# Basic sanity check
+if command -v checkMesh >/dev/null 2>&1; then
+  checkMesh > log.checkMesh 2>&1
+else
+  echo "WARNING: checkMesh not found in PATH. Is OpenFOAM sourced?"
+fi
 
 # Decompose for parallel
 echo "2) decomposePar (8 cores)..."
@@ -21,3 +33,4 @@ mpirun --oversubscribe -np 8 foamRun -parallel > log.J3_fast 2>&1 &
 echo "Done! Monitor: tail -f log.J3_fast"
 echo "Stop later: kill %1"
 echo "Reconstruct: reconstructPar"
+
