@@ -1,4 +1,9 @@
 # OpenFOAM runtime outputs
+[0-9]*/
+!0.orig/
+!0.orig/**
+!ShockTube_multicomponent_Test/0/
+!ShockTube_multicomponent_Test/0/**
 processor*/
 log.*
 postProcessing/
