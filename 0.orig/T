@@ -1,0 +1,36 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      T;
+}
+
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 1400;
+
+boundaryField
+{
+    airinlet
+    {
+        type            fixedValue;
+        value           uniform 1400;
+    }
+
+    jetinlet
+    {
+        type            fixedValue;
+        value           uniform 300;
+    }
+
+    outlet         {type zeroGradient;}
+
+    farfield       {type zeroGradient;}
+
+    plate          {type zeroGradient;}
+
+    frontAndBackPlanes {type empty;}
+
+}

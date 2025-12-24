@@ -1,4 +1,4 @@
-# OpenFOAM runtime outputs (time directories)
+# OpenFOAM runtime outputs 
 [0-9]*/
 !0.orig/
 !0.orig/**
