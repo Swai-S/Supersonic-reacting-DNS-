@@ -1,4 +1,4 @@
-# OpenFOAM runtime outputs
+# OpenFOAM runtime outputs (time directories)
 [0-9]*/
 !0.orig/
 !0.orig/**
@@ -20,3 +20,4 @@ constant/polyMesh/
 *~
 __pycache__/
 *.pyc
+
