@@ -7,6 +7,9 @@ This repository contains a supersonic 2D laminar reacting flow case of hydrogen 
 - OpenFOAM v13 from openfoam.org
 - Linux environment (tested on Ubuntu)
 
+# Multicomponent Shock Tube Test
+It is used to verify the correctness of the multicomponent compressible solver configuration before applying it to more complex supersonic reacting flows.
+
 # Shock tube comparison
 - Script: `scripts/compare_shocktube_exact.py`
 - Input data:
